@@ -9,6 +9,14 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
+    "baseUrl": ".",
+    "paths": {
+        "@/components/*": ["src/components/*"],
+        "@/types/*": ["src/types/*"],
+        "@/provider/*": ["src/provider/*"],
+        "@/layout/*": ["src/layout/*"],
+        "@/utils/*": ["src/utils/*"]
+    },
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
