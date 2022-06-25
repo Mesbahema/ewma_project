@@ -52,4 +52,6 @@ declare global {
     type ThemeObjectType = typeof themeObject
 
     type BreakPointType = keyof typeof themeObject.breakpoints.values
+
+    type AppCommonChild = { children: React.ReactNode }
 }

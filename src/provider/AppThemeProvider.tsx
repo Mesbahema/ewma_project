@@ -49,7 +49,7 @@ export const themeObject = {
     },
     palette: {
         primary: {
-            main: '#2B368F',
+            main: '#318fe7',
             light: '#D6E1FF',
             '200': '#9BB6FF',
             '100': '#4090D0',
@@ -85,7 +85,7 @@ export const themeObject = {
         grey: {
             main: '#E2E2E2',
             '100': '#F1F1F1',
-            '200': '#8B8B8B',
+            '200': '858585',
             '300': '#707070',
             '400': '#656565',
             '500': '#808080'
@@ -104,8 +104,8 @@ export const themeObject = {
         text: {
             main: '#222222',
             placeholder: '#8B8B8B',
-            100: '#6270DD',
-            700: '#444444'
+            100: '#858585',
+            700: '#858585'
         }
     },
     shape: {

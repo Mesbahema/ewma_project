@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import React from 'react'
-import { MText } from '../base/MText'
 import { Spacer } from '../base/Spacer.'
 import MovieCard from './MovieCard';
 import { movieData } from './movieData';
+import Pagination from './Pagination';
 
 const HomeComponentContainer = styled.div({
     display: 'grid',
@@ -21,7 +21,8 @@ const HomeComponent = () => {
                 movieData.map((item, key) => <MovieCard key={key} movie={item}/>)
             }
         </HomeComponentContainer>
-        <MText variant='h1' palette='secondary'>this is the text</MText>
+        <Spacer vert={161}/>
+        <Pagination/>
         </>
   )
 }
