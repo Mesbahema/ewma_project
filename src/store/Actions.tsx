@@ -1,0 +1,4 @@
+export const ACTIONS = {
+    SET_PAGE: 'SET_PAGE',
+    SET_NAV_COMPONENT: 'SET_NAV_COMPONENT',
+}

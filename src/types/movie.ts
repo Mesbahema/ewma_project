@@ -1,7 +1,8 @@
-export type movieType = {
+export type MovieType = {
     original_title: string,
     poster_path: string,
     release_date: string,
+    id: number,
     genre_ids: number[]
 }
 
@@ -26,4 +27,24 @@ export type movieDetailType = {
     homepage: string,
     overview: string,
     production_companies: Partial<ProductionCompanyType>[]
+}
+
+export type AllMovieResponseType = {
+    page: number,
+    total_pages: number,
+    total_results: number,
+    results: MovieType[],
+}
+
+export type AllMoviesInputType = {
+    page?: number,
+    'primary_release_date.gte'?: string,
+    'primary_release_date.lte'?: string
+}
+export type GenreType = {
+    id: number,
+    name: string
+}
+export type AllGenresResponseType = {
+    genres: GenreType[]
 }

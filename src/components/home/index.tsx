@@ -1,8 +1,10 @@
+import { DataContext } from '@/provider/StateProvider';
 import styled from '@emotion/styled';
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { useGetAllGenres, useGetAllMovies } from 'src/api/hooks';
 import { Spacer } from '../base/Spacer.'
+import FilterComponent from './FilterComponent';
 import MovieCard from './MovieCard';
-import { movieData } from './movieData';
 import Pagination from './Pagination';
 
 const HomeComponentContainer = styled.div({
@@ -13,18 +15,32 @@ const HomeComponentContainer = styled.div({
     gridGap: 35,
 });
 const HomeComponent = () => {
-  return (
-    <>
-        <Spacer vert={119}/>
-        <HomeComponentContainer>
-            {
-                movieData.map((item, key) => <MovieCard key={key} movie={item}/>)
-            }
-        </HomeComponentContainer>
-        <Spacer vert={161}/>
-        <Pagination/>
+    const {state, dispatch} = useContext(DataContext)
+    
+    const { page } = state
+
+    const { data, refetch } = useGetAllMovies({page})
+
+    const { data: genresData } = useGetAllGenres()
+
+    useEffect(() => {
+        refetch()
+    }, [page])
+    useEffect(() => {
+        dispatch({type: 'SET_NAV_COMPONENT', payload: FilterComponent})
+    }, [])
+    return (
+        <>
+            <Spacer vert={119} />
+            <HomeComponentContainer>
+                {data &&
+                    data.results.map((item, key) => <MovieCard genresData={genresData?.genres} key={key} movie={item} />)
+                }
+            </HomeComponentContainer>
+            <Spacer vert={161} />
+            <Pagination totalPage={data?.total_pages} totalResults={data?.total_results}/>
         </>
-  )
+    )
 }
 
 export default HomeComponent

@@ -1,8 +1,8 @@
-import { movieType } from "@/types/movie"
+import { GenreType, MovieType } from "@/types/movie"
 import styled from "@emotion/styled"
 import CalendarIcon from "../assets/icons/CalendarIcon"
 import { MText } from "../base/MText"
-import { Spacer } from "../base/Spacer."
+import Link from 'next/link'
 import { getFullImageUrl } from "../utils/ui"
 
 
@@ -14,6 +14,7 @@ const MovieCardContainer = styled.div(({ theme }: { theme?: ThemeObjectType }) =
   padding: 5,
   display: 'grid',
   gridTemplateColumns: '40% 60%',
+  cursor: 'pointer'
 }))
 
 const MoviePoster = styled.img(({ theme }: { theme?: ThemeObjectType }) => ({
@@ -31,20 +32,38 @@ const DetailSection = styled.div(({ theme }: { theme?: ThemeObjectType }) => ({
   gridTemplateRows: '60% 20% 20%',
 }))
 
+const getGenresString = (genresArray: GenreType[], genre_ids: number[]) => {
+  try {
+    const filteredGenres = genresArray.filter(item => genre_ids.includes(item.id))
+    const genresName = filteredGenres.map(item => item.name)
+    let output = ''
+    genresName.forEach((item, key) => {
+      if (key == 0) {
+        output += `${item}`
+      } else {
+        output += `, ${item}`
+      }
+    })
+    return output
+  } catch {
+    return ''
+  }
+}
 
-
-function MovieCard({ movie }: { movie: movieType }) {
+function MovieCard({ movie, genresData = [] }: { movie: MovieType, genresData?: GenreType[] }) {
   return (
-    <MovieCardContainer>
-      <MoviePoster src={getFullImageUrl(movie.poster_path)}/>
-      <DetailSection>
-        <MText fontWeight="bold" variant="h6">{movie.original_title}</MText>
-        <MText style={{display: 'flex'}} variant="body3" ><CalendarIcon/>
-        &nbsp;&nbsp;
-        {movie.release_date}</MText>
-        <MText fontWeight="bold" variant="caption">{movie.original_title}&#9679;</MText>
-      </DetailSection>
-    </MovieCardContainer>
+    <Link href={`/${movie.id}`}>
+      <MovieCardContainer>
+        <MoviePoster src={getFullImageUrl(movie.poster_path)} />
+        <DetailSection>
+          <MText style={{ overflow: 'hidden' }} fontWeight="bold" variant="body1">{movie.original_title}</MText>
+          <MText style={{ display: 'flex' }} variant="body3" ><CalendarIcon />
+            &nbsp;&nbsp;
+            {movie.release_date}</MText>
+          <MText fontWeight="bold" variant="caption">{getGenresString(genresData, movie.genre_ids)}</MText>
+        </DetailSection>
+      </MovieCardContainer>
+    </Link>
   )
 }
 

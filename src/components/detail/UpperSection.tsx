@@ -1,4 +1,4 @@
-import { movieDetailType, movieType } from "@/types/movie";
+import { movieDetailType, MovieType } from "@/types/movie";
 import styled from "@emotion/styled";
 import React, { ReactElement } from "react";
 import { MText } from "../base/MText";

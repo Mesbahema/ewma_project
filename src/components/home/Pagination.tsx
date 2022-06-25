@@ -1,5 +1,7 @@
 import { themeObject } from '@/provider/AppThemeProvider';
+import { DataContext } from '@/provider/StateProvider';
 import styled from '@emotion/styled';
+import { useContext } from 'react';
 import { MButton } from '../base/MButton';
 import { MText } from '../base/MText';
 
@@ -28,30 +30,41 @@ const VerticalLine = styled.div(({ theme }: { theme?: ThemeObjectType }) => ({
     backgroundColor: theme?.palette.text[700]
 }));
 type PaginationPropTypes = {
-    hasNextPage?: boolean,
-    hasPrevPage?: boolean,
+    totalResults?: number,
     totalPage?: number
 }
 const Pagination = ({
-    hasNextPage,
-    hasPrevPage,
+    totalResults,
     totalPage,
 }: PaginationPropTypes) => {
+    const {state, dispatch} = useContext(DataContext)
+    
+    const { page } = state
+
+    const setPage = (currentPage: number, directtion: number) => {
+        dispatch({type: 'SET_PAGE', payload: currentPage + directtion})
+    }
+
+    const getFromTo = (page: number) => {
+        const to = page * 20
+        const from = to - 19
+        return `${from}-${to}`
+    }
     return (
         <>
 
             <PaginationContainer>
                 <UpperSection>
-                    <MButton>
-                        <MText align='center' color={themeObject.palette.text[700]} fontWeight='bold'>Previous Page</MText>
+                    <MButton onClick={() => setPage(page, -1)} disabled={page === 1}>
+                        <MText align='center' color={themeObject.palette.primary.main} fontWeight='bold'>Previous Page</MText>
                     </MButton>
-                    <VerticalLine />
-                    <MButton>
+                    <VerticalLine  />
+                    <MButton disabled={page === totalPage} onClick={() => setPage(page, 1)}>
                         <MText align='center' color={themeObject.palette.primary.main} fontWeight='bold'>Next Page</MText>
                     </MButton>
                 </UpperSection>
                 <LowerSection>
-                    <MText align='center' color={themeObject.palette.text[700]} variant='body1'>Showing results 1-20</MText>
+                    <MText align='center' color={themeObject.palette.text[700]} variant='body1'>Showing results {`${getFromTo(page)}`}</MText>
 
                 </LowerSection>
             </PaginationContainer>

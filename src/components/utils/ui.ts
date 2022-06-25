@@ -1,7 +1,6 @@
-import { config } from 'config';
-
 export function getFullImageUrl(url?: string) {
-    if (url?.includes?.(config.baseImageUrl)) return url;
+    const baseImageUrl = process.env.BASE_IMAGE_URL as string
+    if (url?.includes?.(baseImageUrl)) return url;
 
-    return url && `${config.baseImageUrl}${url}`;
+    return url && `${baseImageUrl}${url}`;
 }
