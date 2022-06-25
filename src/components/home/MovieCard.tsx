@@ -39,7 +39,9 @@ function MovieCard({ movie }: { movie: movieType }) {
       <MoviePoster src={getFullImageUrl(movie.poster_path)}/>
       <DetailSection>
         <MText fontWeight="bold" variant="h6">{movie.original_title}</MText>
-        <MText style={{display: 'flex'}} variant="body3" ><CalendarIcon/><Spacer hori={2}/>{movie.release_date}</MText>
+        <MText style={{display: 'flex'}} variant="body3" ><CalendarIcon/>
+        &nbsp;&nbsp;
+        {movie.release_date}</MText>
         <MText fontWeight="bold" variant="caption">{movie.original_title}&#9679;</MText>
       </DetailSection>
     </MovieCardContainer>

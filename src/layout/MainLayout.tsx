@@ -11,6 +11,10 @@ const UpperBound = styled.div(({ theme }: { theme?: typeof themeObject }) => ({
     backgroundColor: theme?.palette.secondary.main
 }))
 
+const Footer = styled.div(({ theme }: { theme?: typeof themeObject }) => ({
+    height: 200,
+}))
+
 interface Props {
     children: React.ReactNode;
 }
@@ -24,6 +28,7 @@ const MainLayout = ({ children }: Props) => {
                 <Navbar />
                 {children}
             </Container>
+            <Footer />
         </>
     )
 }

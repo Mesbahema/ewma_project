@@ -10,10 +10,6 @@ const PaginationContainer = styled.div({
     display: 'grid',
     gridTemplateRows: '60% 40%',
 });
-const LowerSpace = styled.div({
-    width: 240,
-    height: 95,
-});
 const LowerSection = styled.div({
     width: '100%',
     height: '100%',
@@ -59,7 +55,6 @@ const Pagination = ({
 
                 </LowerSection>
             </PaginationContainer>
-            <LowerSpace />
         </>
     )
 }
