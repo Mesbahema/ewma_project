@@ -52,6 +52,7 @@ export type AllGenresResponseType = {
 
 export type CastType = {
     original_name: string,
+    popularity: number
 }
 
 export type CastResponseType = {
