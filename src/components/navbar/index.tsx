@@ -13,7 +13,6 @@ const Navbar = () => {
     const {state, dispatch} = useContext(DataContext)
     
     const { NavComponent } = state
-    console.log('navComponent', NavComponent)
     return(
         <NavbarWrapper>
             <NavComponent/>

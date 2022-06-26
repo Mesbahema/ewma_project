@@ -4,6 +4,7 @@ import StateProvider from '@/provider/StateProvider';
 import type { AppProps } from 'next/app'
 import { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from "react-query";
+import 'rsuite/dist/rsuite.min.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {

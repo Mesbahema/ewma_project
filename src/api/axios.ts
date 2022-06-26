@@ -11,7 +11,7 @@ const apiClient = axios.create({
 });
 export const findAllKey = 'discover/movie'
 const findAll = async (props : AllMoviesInputType) => {
-  const response = await apiClient.get<AllMovieResponseType>(`/${findAllKey}?page=${props.page}`);
+  const response = await apiClient.get<AllMovieResponseType>(`/${findAllKey}?page=${props.page}&primary_release_date.gte=${props['primary_release_date.gte']}&primary_release_date.lte=${props['primary_release_date.lte']}`);
   return response.data;
 }
 export const findAllGeneresKey = 'genre/movie/list'

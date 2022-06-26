@@ -13,6 +13,11 @@ const reducers = (state: typeof initialState, action: any) => {
                 ...state,
                 NavComponent: action.payload
             };
+        case ACTIONS.SET_DATE_RANGE:
+            return {
+                ...state,
+                dateRange: action.payload
+            };
         default:
             return state;
 

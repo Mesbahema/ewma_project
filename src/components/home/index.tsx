@@ -15,19 +15,23 @@ const HomeComponentContainer = styled.div({
     gridGap: 35,
 });
 const HomeComponent = () => {
-    const {state, dispatch} = useContext(DataContext)
-    
-    const { page } = state
+    const { state, dispatch } = useContext(DataContext)
 
-    const { data, refetch } = useGetAllMovies({page})
+    const { page, dateRange } = state
+
+    const { data, refetch } = useGetAllMovies({
+        page,
+        'primary_release_date.gte': dateRange[0],
+        'primary_release_date.lte': dateRange[1]
+    })
 
     const { data: genresData } = useGetAllGenres()
 
     useEffect(() => {
         refetch()
-    }, [page])
+    }, [page, dateRange])
     useEffect(() => {
-        dispatch({type: 'SET_NAV_COMPONENT', payload: FilterComponent})
+        dispatch({ type: 'SET_NAV_COMPONENT', payload: FilterComponent })
     }, [])
     return (
         <>
@@ -38,7 +42,7 @@ const HomeComponent = () => {
                 }
             </HomeComponentContainer>
             <Spacer vert={161} />
-            <Pagination totalPage={data?.total_pages} totalResults={data?.total_results}/>
+            <Pagination totalPage={data?.total_pages} totalResults={data?.total_results} />
         </>
     )
 }

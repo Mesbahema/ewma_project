@@ -3,7 +3,8 @@ import reducers from '../store/Reducers'
 
 export const initialState = {
     page: 1,
-    NavComponent: Fragment as React.FC<any>
+    NavComponent: Fragment as React.FC<any>,
+    dateRange: ['', '']
 }
 
 export const DataContext = createContext({} as {state: typeof initialState, dispatch: Dispatch<any>})
