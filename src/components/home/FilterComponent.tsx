@@ -39,7 +39,6 @@ const FilerComponent = () => {
     const handleChange = (e: any) => {
         try {
             setDateRange(e.map((item: any) => getDateFormat(item)))
-            console.log('here')
         } catch {
             setDateRange(['', ''])
         }

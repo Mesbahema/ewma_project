@@ -1,9 +1,9 @@
-import { movieDetailType, MovieType } from "@/types/movie";
+import { GenreType, movieDetailType, MovieType } from "@/types/movie";
 import styled from "@emotion/styled";
 import React, { ReactElement } from "react";
 import { MText } from "../base/MText";
 import { toPriceFormat, toTitleCase } from "../utils/regex";
-import { getFullImageUrl } from "../utils/ui";
+import { getFullImageUrl, getImdbLink } from "../utils/ui";
 
 const UpperSectionContainer = styled.div({
     display: 'grid',
@@ -27,19 +27,36 @@ const DetailSection = styled.div(({ theme }: { theme?: ThemeObjectType }) => ({
     padding: 70,
 }))
 
+const stringifyGenres = (genres: GenreType[]) => {
+    try {
+        let output = ''
+        genres.forEach((item, key) => {
+            if (key === 0) {
+                output += item.name
+            } else {
+                output += `, ${item.name}`
+            }
+        })
+        return output
+    }
+    catch {
+        return ''
+    }
+}
+
 const UpperSection = ({ movie }: { movie: Partial<movieDetailType> }) => {
     return (
         <UpperSectionContainer>
-            <MoviePoster src={getFullImageUrl(movie.poster_path)} />
+            <MoviePoster alt="no poster" src={getFullImageUrl(movie?.poster_path)} />
             <DetailSection>
-                <DetailRow subject={'Budget'} value={toPriceFormat(movie.budget)} />
-                <DetailRow subject={'Revenue'} value={toPriceFormat(movie.revenue)} />
-                <DetailRow subject={'Release Date'} value={movie.release_date} />
-                <DetailRow subject={'Run time'} value={`${movie.runtime}`} />
-                <DetailRow subject={'Scores'} value={`${movie.vote_average} (${movie.vote_count} votes)`} />
-                <DetailRow subject={'Genres'} value={'1,2,3'} />
-                <DetailRow subject={'IMDB Link'} value={movie.imdb_id} />
-                <DetailRow subject={'Homepage Link'} value={movie.homepage} />
+                <DetailRow subject={'Budget'} value={toPriceFormat(movie?.budget)} />
+                <DetailRow subject={'Revenue'} value={toPriceFormat(movie?.revenue)} />
+                <DetailRow subject={'Release Date'} value={movie?.release_date} />
+                <DetailRow subject={'Run time'} value={`${movie?.runtime} minutes`} />
+                <DetailRow subject={'Scores'} value={`${movie?.vote_average} (${movie?.vote_count} votes)`} />
+                <DetailRow subject={'Genres'} value={stringifyGenres(movie?.genres as GenreType[])} />
+                <DetailRow subject={'IMDB Link'} href={getImdbLink(movie?.imdb_id)} />
+                <DetailRow subject={'Homepage Link'} href={movie?.homepage} />
             </DetailSection>
         </UpperSectionContainer>
     )
@@ -54,18 +71,17 @@ const DetailRowContainer = styled.div({
 const DetailRow = ({
     subject,
     value,
-    Component
+    href
 }: {
     subject?: string
     value?: string,
-    Component?: React.FC<{ active?: boolean }>
+    href?: string
 }) => {
-    console.log('subject', subject)
     return (
         <DetailRowContainer>
             <MText variant="h6" fontWeight="bold">{subject}</MText>
             {value && (<MText variant="h6">{value}</MText>)}
-            {Component && (<Component />)}
+            {href && (<MText variant="h6"><a  href={href} target="_blank" >Link</a></MText>)}
         </DetailRowContainer>
     )
 }

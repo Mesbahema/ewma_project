@@ -54,7 +54,7 @@ function MovieCard({ movie, genresData = [] }: { movie: MovieType, genresData?: 
   return (
     <Link href={`/${movie.id}`}>
       <MovieCardContainer>
-        <MoviePoster src={getFullImageUrl(movie.poster_path)} />
+        <MoviePoster alt="no poster" src={getFullImageUrl(movie.poster_path)} />
         <DetailSection>
           <MText style={{ overflow: 'hidden' }} fontWeight="bold" variant="body1">{movie.original_title}</MText>
           <MText style={{ display: 'flex' }} variant="body3" ><CalendarIcon />

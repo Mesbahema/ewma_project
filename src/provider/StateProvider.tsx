@@ -3,7 +3,10 @@ import reducers from '../store/Reducers'
 
 export const initialState = {
     page: 1,
-    NavComponent: Fragment as React.FC<any>,
+    NavComponent: {
+        Component: Fragment as React.FC<any>,
+        props: {} as any
+    },
     dateRange: ['', '']
 }
 

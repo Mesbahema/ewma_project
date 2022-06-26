@@ -4,3 +4,12 @@ export function getFullImageUrl(url?: string) {
 
     return url && `${baseImageUrl}${url}`;
 }
+
+const imdbBaseUrl = 'https://www.imdb.com/title'
+export function getImdbLink(url?: string) {
+    try {
+        return `${imdbBaseUrl}/${url}`
+    } catch {
+        return imdbBaseUrl
+    }
+}

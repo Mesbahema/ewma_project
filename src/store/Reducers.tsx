@@ -16,7 +16,8 @@ const reducers = (state: typeof initialState, action: any) => {
         case ACTIONS.SET_DATE_RANGE:
             return {
                 ...state,
-                dateRange: action.payload
+                dateRange: action.payload,
+                page: 1
             };
         default:
             return state;

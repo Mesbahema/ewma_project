@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import React, { useContext, useEffect } from 'react'
 import { useGetAllGenres, useGetAllMovies } from 'src/api/hooks';
 import { Spacer } from '../base/Spacer.'
+import { AppLoadingPage } from '../base/loader/loadingPage';
 import FilterComponent from './FilterComponent';
 import MovieCard from './MovieCard';
 import Pagination from './Pagination';
@@ -19,22 +20,23 @@ const HomeComponent = () => {
 
     const { page, dateRange } = state
 
-    const { data, refetch } = useGetAllMovies({
+    const { data, refetch, isLoading } = useGetAllMovies({
         page,
         'primary_release_date.gte': dateRange[0],
         'primary_release_date.lte': dateRange[1]
     })
 
-    const { data: genresData } = useGetAllGenres()
+    const { data: genresData,  isLoading: genresIsLoading} = useGetAllGenres()
 
     useEffect(() => {
         refetch()
     }, [page, dateRange])
     useEffect(() => {
-        dispatch({ type: 'SET_NAV_COMPONENT', payload: FilterComponent })
+        dispatch({ type: 'SET_NAV_COMPONENT', payload: {Component: FilterComponent} })
     }, [])
     return (
         <>
+            <AppLoadingPage isLoading={isLoading || genresIsLoading}/>
             <Spacer vert={119} />
             <HomeComponentContainer>
                 {data &&

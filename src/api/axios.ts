@@ -1,4 +1,4 @@
-import { AllGenresResponseType, AllMovieResponseType, AllMoviesInputType, GenreType, MovieType } from "@/types/movie";
+import { AllGenresResponseType, AllMovieResponseType, AllMoviesInputType, CastResponseType, GenreType, movieDetailType, MovieType } from "@/types/movie";
 import axios from "axios";
 const apiClient = axios.create({
   baseURL: process.env.BASE_API_URL,
@@ -19,18 +19,21 @@ const findAllGeneres = async () => {
   const response = await apiClient.get<AllGenresResponseType>(`/${findAllGeneresKey}`);
   return response.data;
 }
-const findById = async (id: any) => {
-  const response = await apiClient.get<MovieType>(`/movieTypes/${id}`);
+
+export const findByIdKey = 'movie/'
+const findById = async (id?: string) => {
+  const response = await apiClient.get<movieDetailType>(`/${findByIdKey}/${id}`);
   return response.data;
 }
-const findByTitle = async (title: string) => {
-  const response = await apiClient.get<MovieType[]>(`/movieTypes?title=${title}`);
+export const  findCreditsKey = '/credits'
+const findCredits = async (id?: string) => {
+  const response = await apiClient.get<CastResponseType>(`/movie/${id}/credits`);
   return response.data;
 }
 const MoviesService = {
   findAll,
   findById,
-  findByTitle,
-  findAllGeneres
+  findAllGeneres,
+  findCredits
 }
 export default MoviesService;

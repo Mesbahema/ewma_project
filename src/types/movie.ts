@@ -17,7 +17,7 @@ export type movieDetailType = {
     original_title: string,
     poster_path: string,
     release_date: string,
-    genre_ids: number[],
+    genres: GenreType[],
     budget: number,
     revenue: number,
     runtime: number,
@@ -25,6 +25,7 @@ export type movieDetailType = {
     vote_count: number,
     imdb_id: string,
     homepage: string,
+    tagline: string,
     overview: string,
     production_companies: Partial<ProductionCompanyType>[]
 }
@@ -47,4 +48,12 @@ export type GenreType = {
 }
 export type AllGenresResponseType = {
     genres: GenreType[]
+}
+
+export type CastType = {
+    original_name: string,
+}
+
+export type CastResponseType = {
+    cast: CastType[]
 }
