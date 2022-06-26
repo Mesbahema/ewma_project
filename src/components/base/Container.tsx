@@ -5,6 +5,7 @@ const Container = styled.div(({ theme, maxWidth }: { theme?: ThemeObjectType, ma
     width: '100%',
     maxWidth: theme?.breakpoints.values[maxWidth],
     margin: 'auto',
+    padding: '0 20px',
 }))
 
 export default Container;

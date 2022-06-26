@@ -34,7 +34,6 @@ const HomeComponent = () => {
     useEffect(() => {
         dispatch({ type: 'SET_NAV_COMPONENT', payload: {Component: FilterComponent} })
     }, [])
-    console.log(isLoading, isRefetching)
     return (
         <>
             <AppLoadingPage isLoading={isLoading || genresIsLoading || isRefetching}/>
