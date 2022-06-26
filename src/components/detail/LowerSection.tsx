@@ -11,7 +11,6 @@ const stringifyCasts = (casts: CastType[]) => {
         });
         let output = ''
         try {
-
             sortedCast.forEach((item, key) => {
                 if(key === max) throw BreakForeach
                 if (key === 0) {
@@ -21,11 +20,8 @@ const stringifyCasts = (casts: CastType[]) => {
                 }
             })
         } catch {
-
         }
-
         if(sortedCast.length > max) output += ` and ${sortedCast.length - max} more`
-        
         return output
     }
     catch {
