@@ -15,7 +15,7 @@ const Container = styled.div({
     zIndex: 5
 });
 
-export const AppLoadingPage = memo(({isLoading}: {isLoading?: boolean}) => {
+export const AppLoadingPage = ({isLoading}: {isLoading?: boolean}) => {
     return (
         <>
         {isLoading && <Container>
@@ -23,4 +23,4 @@ export const AppLoadingPage = memo(({isLoading}: {isLoading?: boolean}) => {
         </Container>}
         </>
     );
-});
+};

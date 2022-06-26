@@ -51,7 +51,7 @@ const getGenresString = (genresArray: GenreType[], genre_ids: number[]) => {
   }
 }
 
-const MovieCard = memo(({ movie, genresData = [] }: { movie: MovieType, genresData?: GenreType[] }) => {
+const MovieCard = ({ movie, genresData = [] }: { movie: MovieType, genresData?: GenreType[] }) => {
   return (
     <Link href={`/${movie.id}`}>
       <MovieCardContainer>
@@ -66,6 +66,6 @@ const MovieCard = memo(({ movie, genresData = [] }: { movie: MovieType, genresDa
       </MovieCardContainer>
     </Link>
   )
-})
+}
 
 export default MovieCard
