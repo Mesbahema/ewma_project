@@ -81,7 +81,7 @@ const DetailRow = ({
         <DetailRowContainer>
             <MText variant="h6" fontWeight="bold">{subject}</MText>
             {value && (<MText variant="h6">{value}</MText>)}
-            {href && (<MText variant="h6"><a  href={href} target="_blank" >Link</a></MText>)}
+            {href && (<MText variant="h6"><a rel="noreferrer" href={href} target="_blank" >Link</a></MText>)}
         </DetailRowContainer>
     )
 }
