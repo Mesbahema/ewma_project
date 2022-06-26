@@ -14,6 +14,7 @@ const MovieCardContainer = styled.div(({ theme }: { theme?: ThemeObjectType }) =
   borderRadius: theme?.shape.borderRadius.common,
   padding: 5,
   display: 'grid',
+  overflow: 'hidden',
   gridTemplateColumns: '40% 60%',
   cursor: 'pointer'
 }))
@@ -61,7 +62,7 @@ const MovieCard = ({ movie, genresData = [] }: { movie: MovieType, genresData?: 
           <MText style={{ display: 'flex' }} variant="body3" ><CalendarIcon />
             &nbsp;&nbsp;
             {movie.release_date}</MText>
-          <MText fontWeight="bold" variant="caption">{getGenresString(genresData, movie.genre_ids)}</MText>
+          <MText style={{ overflow: 'hidden' }} fontWeight="bold" variant="caption">{getGenresString(genresData, movie.genre_ids)}</MText>
         </DetailSection>
       </MovieCardContainer>
     </Link>
