@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { memo } from 'react';
 import { PrimarySpinner } from './spinner';
 
 const Container = styled.div({
@@ -14,7 +15,7 @@ const Container = styled.div({
     zIndex: 5
 });
 
-export const AppLoadingPage = ({isLoading}: {isLoading?: boolean}) => {
+export const AppLoadingPage = memo(({isLoading}: {isLoading?: boolean}) => {
     return (
         <>
         {isLoading && <Container>
@@ -22,4 +23,4 @@ export const AppLoadingPage = ({isLoading}: {isLoading?: boolean}) => {
         </Container>}
         </>
     );
-};
+});

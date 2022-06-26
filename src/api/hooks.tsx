@@ -10,7 +10,7 @@ export function useGetAllMovies(
         findAllKey
         ,
         () => MoviesService.findAll(props),
-        { keepPreviousData: true }
+        { keepPreviousData: false,enabled: false }
     );
 }
 export function useGetAllGenres() {

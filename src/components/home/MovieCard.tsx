@@ -4,6 +4,7 @@ import CalendarIcon from "../assets/icons/CalendarIcon"
 import { MText } from "../base/MText"
 import Link from 'next/link'
 import { getFullImageUrl } from "../utils/ui"
+import { memo } from "react"
 
 
 const MovieCardContainer = styled.div(({ theme }: { theme?: ThemeObjectType }) => ({
@@ -50,7 +51,7 @@ const getGenresString = (genresArray: GenreType[], genre_ids: number[]) => {
   }
 }
 
-function MovieCard({ movie, genresData = [] }: { movie: MovieType, genresData?: GenreType[] }) {
+const MovieCard = memo(({ movie, genresData = [] }: { movie: MovieType, genresData?: GenreType[] }) => {
   return (
     <Link href={`/${movie.id}`}>
       <MovieCardContainer>
@@ -65,6 +66,6 @@ function MovieCard({ movie, genresData = [] }: { movie: MovieType, genresData?: 
       </MovieCardContainer>
     </Link>
   )
-}
+})
 
 export default MovieCard

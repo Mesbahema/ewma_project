@@ -20,7 +20,7 @@ const HomeComponent = () => {
 
     const { page, dateRange } = state
 
-    const { data, refetch, isLoading } = useGetAllMovies({
+    const { data, refetch, isLoading, isRefetching } = useGetAllMovies({
         page,
         'primary_release_date.gte': dateRange[0],
         'primary_release_date.lte': dateRange[1]
@@ -34,9 +34,10 @@ const HomeComponent = () => {
     useEffect(() => {
         dispatch({ type: 'SET_NAV_COMPONENT', payload: {Component: FilterComponent} })
     }, [])
+    console.log(isLoading, isRefetching)
     return (
         <>
-            <AppLoadingPage isLoading={isLoading || genresIsLoading}/>
+            <AppLoadingPage isLoading={isLoading || genresIsLoading || isRefetching}/>
             <Spacer vert={119} />
             <HomeComponentContainer>
                 {data &&
